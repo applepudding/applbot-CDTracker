@@ -1,5 +1,5 @@
 # applbot-CDTracker
-Advanced Combat Tracker Plugin for FFXIV, a cooldown timer tracker.
+ACT Plugin for FFXIV, a simple cooldown timer tracker.
 
 Please put the folder inside your ACT folder!
 
