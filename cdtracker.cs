@@ -58,7 +58,8 @@ namespace applbot_CDTracker
 				}
                 else
                 {
-					ActGlobals.oFormActMain.AfterCombatAction -= oFormActMain_AfterCombatAction;
+					//ActGlobals.oFormActMain.AfterCombatAction -= oFormActMain_AfterCombatAction; 
+					ActGlobals.oFormActMain.BeforeCombatAction -= oFormActMain_AfterCombatAction;
 				}
 
 				//save CD list
@@ -99,19 +100,22 @@ namespace applbot_CDTracker
 
 		void oFormActMain_OnLogLineRead(bool isImport, LogLineEventArgs logInfo)
 		{
-			//lblStatus.Text = logInfo.logLine;
-			string tempLine = logInfo.logLine;
-			if (tempLine.Contains("use") || tempLine.Contains("uses"))
+			if (logInfo.logLine.Length < 300)
             {
-				tempLine = tempLine.Replace("uses", "use");
-				tempLine = tempLine.Replace(".", "");
-				string[] tempExplode = Regex.Split(tempLine, ":");
-				tempLine = tempExplode[tempExplode.Length-1];
-				tempExplode = Regex.Split(tempLine, " use ");
-				string caster = tempExplode[0];
-				string skillName = tempExplode[1];
-				this.checkSkillToTrack(caster, skillName);
+				string tempLine = logInfo.logLine;
+				if (tempLine.Contains(" use ") || tempLine.Contains(" uses "))
+				{
+					tempLine = tempLine.Replace("uses", "use");
+					tempLine = tempLine.Replace(".", "");
+					string[] tempExplode = Regex.Split(tempLine, ":");
+					tempLine = tempExplode[tempExplode.Length - 1];
+					tempExplode = Regex.Split(tempLine, " use ");
+					string caster = tempExplode[0];
+					string skillName = tempExplode[1];
+					this.checkSkillToTrack(caster, skillName);
+				}
 			}
+
 		}
 
 		public void checkSkillToTrack(string caster, string skillName)
@@ -184,7 +188,8 @@ namespace applbot_CDTracker
 					}
 					else
 					{
-						ActGlobals.oFormActMain.AfterCombatAction += new CombatActionDelegate(oFormActMain_AfterCombatAction);
+						//ActGlobals.oFormActMain.AfterCombatAction += new CombatActionDelegate(oFormActMain_AfterCombatAction); 
+						ActGlobals.oFormActMain.BeforeCombatAction += new CombatActionDelegate(oFormActMain_AfterCombatAction);
 					}
 
 				}
