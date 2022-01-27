@@ -15,6 +15,7 @@ namespace applbot_CDTracker
         private int _varPicSize;
         private ffxiv_spell _varSpell;
         private PictureBox _varPictureBox;
+        private ToolTip _varToolTip;
         private int _varTimerValue;
         private long _varTimestamp;
         private SolidBrush _varCurrentBrush;
@@ -110,6 +111,11 @@ namespace applbot_CDTracker
         {
             get { return _varPictureBox; }
             set { _varPictureBox = value; }
+        }
+        public ToolTip varToolTip
+        {
+            get { return _varToolTip; }
+            set { _varToolTip = value; }
         }
         public int varTimerValue
         {

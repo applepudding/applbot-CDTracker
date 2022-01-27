@@ -61,6 +61,7 @@ namespace applbot_CDTracker
             {
                 foreach (ffxiv_spelltimer spelltimer in ffxiv_spelltimerList)
                 {
+                    spelltimer.varToolTip.SetToolTip(spelltimer.varPictureBox, null);   //may not be needed
                     this.Controls.Remove(spelltimer.varPictureBox);
                 }
                 this.Size = new System.Drawing.Size(105, 105);
@@ -140,6 +141,12 @@ namespace applbot_CDTracker
                     ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varPictureBox.MouseDown += new MouseEventHandler(label1_MouseDown);
                     ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varPictureBox.MouseMove += new MouseEventHandler(label1_MouseMove);
                     ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varPictureBox.MouseUp += new MouseEventHandler(label1_MouseUp);
+
+                    ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varToolTip = new ToolTip();
+                    ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varToolTip.InitialDelay = 10;
+                    ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varToolTip.ReshowDelay = 100;
+                    ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varToolTip.ShowAlways = true;
+                    ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varToolTip.SetToolTip(ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varPictureBox, ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].varSpell.varInfo);
 
                     ffxiv_spelltimerList[ffxiv_spelltimerList.Count - 1].start(displayCasterName);
 

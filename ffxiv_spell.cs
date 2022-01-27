@@ -11,22 +11,29 @@ namespace applbot_CDTracker
     public class ffxiv_spell
     {
         private string _varName;
+        private string _varInfo;
         private int _varCooldown;
         private int _varDuration;
         private int _varType;
         private Image _varImg;
-        public ffxiv_spell(string name, int duration, int cooldown, Image img, int type)
+        public ffxiv_spell(string name, int duration, int cooldown, Image img, int type, string info)
         {
             _varName = name;
             _varCooldown = cooldown;
             _varDuration = duration;
             _varImg = img;
             _varType = type;
+            _varInfo = info;
         }
         public string varName
         {
             get { return _varName; }
             set { _varName = value; }
+        }
+        public string varInfo
+        {
+            get { return _varInfo; }
+            set { _varInfo = value; }
         }
         public int varCooldown
         {

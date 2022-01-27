@@ -179,6 +179,7 @@ namespace applbot_CDTracker
 					foreach (var item in this.appConfig.skills_offensive)
 					{
 						String tempName = item.name;
+						String skillInfo = item.notes;
 						int tempDuration = item.duration;
 						int tempCd = item.cd;
 
@@ -186,12 +187,13 @@ namespace applbot_CDTracker
 						Image tempImg = Image.FromStream(tempStream);
 						tempStream.Close();
 						//Image tempImg = Image.FromFile(this.pluginPath + "\\applbotv2\\imgs\\" + item.img);
-						this.skillTemplates_offensive.Add(new ffxiv_spell(tempName, tempDuration, tempCd, tempImg, 0));
+						this.skillTemplates_offensive.Add(new ffxiv_spell(tempName, tempDuration, tempCd, tempImg, 0, skillInfo));
 					}
 
 					foreach (var item in this.appConfig.skills_defensive)
 					{
 						String tempName = item.name;
+						String skillInfo = item.notes;
 						int tempDuration = item.duration;
 						int tempCd = item.cd;
 
@@ -199,7 +201,7 @@ namespace applbot_CDTracker
 						Image tempImg = Image.FromStream(tempStream);
 						tempStream.Close();
 						//Image tempImg = Image.FromFile(this.pluginPath + "\\applbotv2\\imgs\\" + item.img);
-						this.skillTemplates_defensive.Add(new ffxiv_spell(tempName, tempDuration, tempCd, tempImg, 1));
+						this.skillTemplates_defensive.Add(new ffxiv_spell(tempName, tempDuration, tempCd, tempImg, 1, skillInfo));
 					}
 
 					if (this.appConfig.rawmode_autoreset > 0)
