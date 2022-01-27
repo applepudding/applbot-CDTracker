@@ -103,17 +103,37 @@ namespace applbot_CDTracker
 			if (logInfo.logLine.Length < 300)
             {
 				string tempLine = logInfo.logLine;
-				if (tempLine.Contains(" use ") || tempLine.Contains(" uses "))
-				{
-					tempLine = tempLine.Replace("uses", "use");
-					tempLine = tempLine.Replace(".", "");
-					string[] tempExplode = Regex.Split(tempLine, ":");
-					tempLine = tempExplode[tempExplode.Length - 1];
-					tempExplode = Regex.Split(tempLine, " use ");
-					string caster = tempExplode[0];
-					string skillName = tempExplode[1];
-					this.checkSkillToTrack(caster, skillName);
+				tempLine = tempLine.Replace("uses", "use");
+				//tempLine = tempLine.Replace(".", "");
+				foreach (ffxiv_spell spell in this.skillTemplates_offensive)
+                {
+					string tempString = " use " + spell.varName + ".";
+					if (tempLine.Contains(tempString))
+					{
+						this.lblStatus.Text = tempString;
+						string[] tempExplode = Regex.Split(tempLine, ":");
+						tempLine = tempExplode[tempExplode.Length - 1];
+						tempExplode = Regex.Split(tempLine, tempString);
+						string caster = tempExplode[0];
+						string skillName = spell.varName;
+						this.checkSkillToTrack(caster, skillName);
+					}
 				}
+				foreach (ffxiv_spell spell in this.skillTemplates_defensive)
+				{
+					string tempString = " use " + spell.varName + ".";
+					if (tempLine.Contains(tempString))
+					{
+						this.lblStatus.Text = tempString;
+						string[] tempExplode = Regex.Split(tempLine, ":");
+						tempLine = tempExplode[tempExplode.Length - 1];
+						tempExplode = Regex.Split(tempLine, tempString);
+						string caster = tempExplode[0];
+						string skillName = spell.varName;
+						this.checkSkillToTrack(caster, skillName);
+					}
+				}
+
 			}
 
 		}
