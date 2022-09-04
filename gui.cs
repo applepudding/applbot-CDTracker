@@ -132,7 +132,7 @@ namespace applbot_CDTracker
                     var picture = new PictureBox
                     {
                         Size = new Size(picSize, picSize),
-                        Location = new Point(picMargin + (numberOfSameType -1) * (picSize + picMargin), (spell.varType * (picSize+picMargin))),
+                        Location = new Point(picMargin + (numberOfSameType -1) * (picSize + picMargin), (spell.varType * (picSize+(spell.varType> 1? picMargin*2: picMargin)))),
                         Image = spell.varImg,
                         BorderStyle = BorderStyle.FixedSingle,
                         SizeMode = PictureBoxSizeMode.StretchImage
