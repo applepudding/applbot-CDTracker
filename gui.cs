@@ -24,6 +24,7 @@ namespace applbot_CDTracker
         public int autoreset = 0;
         public int picSize = 75;
         public int picMargin = 10;
+        public int picSpacing = 10;
 
         private void gui_Load(object sender, EventArgs e)
         {
